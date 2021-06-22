@@ -12,7 +12,7 @@ public class MainClass {
 //        compareNumbers ();
         System.out.println (twoNumbers (10, 7));
         valueNumber (-10);
-        System.out.println (isNegative (-1));
+        System.out.println (isNegative (10));
         printWordMulti ("Hello", 5);
         System.out.println (isYear (2012));
     }
@@ -81,17 +81,21 @@ public class MainClass {
     public static boolean isNegative(int x) {
         if (x >= 0) {
             return false;
-        } else {
-            return true;
+        } else return true;
         }
-    }
 
-    //Написать метод, которому в качестве аргументов передается строка и число, метод должен отпечатать в консоль указанную строку, указанное количество раз;
-    public static void printWordMulti(String c, int i) {
-        for (i = i; i <= 20; i *= 2) {
-            System.out.println (c);
-        }
+
+//    //Написать метод, которому в качестве аргументов передается строка и число, метод должен отпечатать в консоль указанную строку, указанное количество раз;
+//    public static void printWordMulti(String c, int i) {
+//        for (i = i; i <= 20; i *= 2) {
+//            System.out.println (c);
+//        }
+//    }
+public static void printWordMulti(String c, int n) {
+    for (int i = 0; i <n; i++) {
+        System.out.println (c);
     }
+}
 
     //* Написать метод, который определяет, является ли год високосным, и возвращает boolean (високосный - true, не високосный - false).
     // Каждый 4-й год является високосным, кроме каждого 100-го, при этом каждый 400-й – високосный.
