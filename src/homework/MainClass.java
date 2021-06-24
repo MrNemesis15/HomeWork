@@ -24,6 +24,7 @@ public class MainClass {
         changeArray ();
         fillDiagonal ();
         oneArr (5,3);
+        minMaxArr ();
     }
 
     //Создайте метод printThreeWords(), который при вызове должен отпечатать в столбец три слова: Orange, Banana, Apple.
