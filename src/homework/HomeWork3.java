@@ -100,30 +100,29 @@ public class HomeWork3 {
 ////    checkBalance([1, 1, 1, ||| 2, 1]) → true, т.е. 1 + 1 + 1 = 2 + 1
 ////    граница показана символами |||, эти символы в массив не входят и не имеют никакого отношения к ИЛИ.
 
-    public static boolean checkBalance(int[] array) {
-        int rightSum = 0;
-        int leftSum = 0;
-
-        for (int i = 0; i < array.length; i++) {
-            rightSum += array[i];
-        }
-        for (int i = 0; i < array.length; i++) {
-            leftSum += array[i];
-        }
-        if (leftSum == rightSum-leftSum) {
-            return true;
-        }
-        return false;
-    }
+//    public static boolean checkBalance(int[] array) {
+//        int rightSum = 0;
+//        int leftSum = 0;
+//
+//        for (int i = 0; i < array.length; i++) {
+//            rightSum += array[i];
+//        }
+//        for (int i = 0; i < array.length; i++) {
+//            leftSum += array[i];
+//        }
+//        if (leftSum == rightSum-leftSum) {
+//            return true;
+//        }
+//        return false;
+//    }
 
     ////
 ////*** Написать метод, которому на вход подается одномерный массив и число n (может быть положительным, или отрицательным),
 // при этом метод должен сместить все элементы массива на n позиций. Элементы смещаются циклично.
 // Для усложнения задачи нельзя пользоваться вспомогательными массивами. Примеры: [ 1, 2, 3 ] при n = 1 (на один вправо) -> [ 3, 1, 2 ]; [ 3, 5, 6, 1]
 // при n = -2 (на два влево) -> [ 6, 1, 3, 5 ]. При каком n в какую сторону сдвиг можете выбирать сами.
-    public static void moveArr (int[] array, int n) {
-
-    }
+//    public static void moveArr (int[] array, int n) {
+//    }
 }
 
 
