@@ -1,6 +1,5 @@
 package lesson3;
 
-import javax.sound.midi.Soundbank;
 import java.util.Arrays;
 import java.util.Random;
 import java.util.Scanner;
