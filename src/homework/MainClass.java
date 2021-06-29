@@ -25,6 +25,8 @@ public class MainClass {
         fillDiagonal ();
         oneArr (5, 3);
         minMaxArr ();
+        checkBalance (new int[]{1, 4, 7, 2, 5, 3, 2, 7, 5, 3, 1, 8});
+        shiftArr (new int[]{1,2,3,4,5,6},2);
 //        checkBalance (new int[]{4,7,5,6,1,9});
 //        moveArr (new int[]{2, 3, 4, 5},1);
     }

@@ -1,4 +1,5 @@
 package homework;
+
 import java.util.Arrays;
 import java.util.Random;
 
@@ -92,14 +93,29 @@ public class HomeWork3 {
         System.out.println (max + " Максимальное");
     }
 
-    ////** Написать метод, в который передается не пустой одномерный целочисленный массив,
+    ///** Написать метод, в который передается не пустой одномерный целочисленный массив,
 // метод должен вернуть true, если в массиве есть место, в котором сумма левой и правой части массива равны.
 ////            Примеры:
 ////    checkBalance([2, 2, 2, 1, 2, 2, ||| 10, 1]) → true, т.е. 2 + 2 + 2 + 1 + 2 + 2 = 10 + 1
 ////    checkBalance([1, 1, 1, ||| 2, 1]) → true, т.е. 1 + 1 + 1 = 2 + 1
 ////    граница показана символами |||, эти символы в массив не входят и не имеют никакого отношения к ИЛИ.
 
-//    public static boolean checkBalance(int[] array) {
+    public static boolean checkBalance(int[] array) {
+        int sum = 0;
+        for (int i = 0; i < array.length; i++) {
+            sum += array[i];
+        }
+        if (sum % 2 != 0) {
+            return false;
+        }
+        int sumLeft = 0;
+        int i = 0;
+        while (sumLeft < sum / 2) {
+            sumLeft += array[i];
+            i++;
+        }
+        return sumLeft == sum / 2;
+    }
 //        int rightSum = 0;
 //        int leftSum = 0;
 //
@@ -122,6 +138,18 @@ public class HomeWork3 {
 // при n = -2 (на два влево) -> [ 6, 1, 3, 5 ]. При каком n в какую сторону сдвиг можете выбирать сами.
 //    public static void moveArr (int[] array, int n) {
 //    }
+    public static int[] shiftArr(int[] arr, int n) {
+        int k = n % arr.length + arr.length;
+        for (int i = 0; i < k; i++) {
+            int tmp = arr[arr.length - 1];
+            for (int j = arr.length-1; j > 0 ;
+            j--){
+                arr[j] = arr[j - 1];
+
+            }
+            arr[0] = tmp;
+        } return arr;
+    }
 }
 
 
