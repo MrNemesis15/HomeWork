@@ -112,6 +112,7 @@ public class XOgame {
         }
         return true;
     }
+    //
     //       Пробовал написать условия для проверки через цикл однако моихнавыков не хватило данный цикл не работает при вводе числа в строку где оно имееться выдает ошибку.
     public static boolean checkWin(char c) {
         for (int i = 0; i < map.length; i++) {
