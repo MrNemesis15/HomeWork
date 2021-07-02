@@ -22,7 +22,7 @@ public class XOgame {
         while (true) {
             humanTurn ();
             printMap ();
-            if (checkWin (DOT_X)) {
+            if (checkWinLines (DOT_X, DOTS_TO_WIN)) {
                 System.out.println ("Вы победили");
                 break;
             }
@@ -32,7 +32,7 @@ public class XOgame {
             }
             aiTurn ();
             printMap ();
-            if (checkWin (DOT_O)) {
+            if (checkWinLines (DOT_O, DOTS_TO_WIN)) {
                 System.out.println ("Компьютер победил!");
                 break;
             }
@@ -85,7 +85,56 @@ public class XOgame {
     public static void aiTurn() {
         int x;
         int y;
-
+//        Попытка победить самому
+        for (int i = 0; i < SIZE; i++) {
+            for (int j = 0; j < SIZE; j++) {
+                if (isCellValid (i, j)) {
+                    map[i][j] = DOT_O;
+                    if (checkWinLines (DOT_O, DOTS_TO_WIN)) {
+                        return;
+                    }
+                    map[i][j] = DOT_EMPTY;
+                }
+            }
+        }
+//Сбить линию противнака если остался 1 ход до победы
+        for (int i = 0; i < SIZE; i++) {
+            for (int j = 0; j < SIZE; j++) {
+                if (isCellValid (i, j)) {
+                    map[i][j] = DOT_X;
+                    if (checkWinLines (DOT_X, DOTS_TO_WIN)) {
+                        map[i][j] = DOT_O;
+                        return;
+                    }
+                    map[i][j] = DOT_EMPTY;
+                }
+            }
+        }
+//        Попытка победить самому 2 хода
+        for (int i = 0; i < SIZE; i++) {
+            for (int j = 0; j < SIZE; j++) {
+                if (isCellValid (i, j)) {
+                    map[i][j] = DOT_O;
+                    if (checkWinLines (DOT_O, DOTS_TO_WIN - 1) && Math.random () < 0.5) {
+                        return;
+                    }
+                    map[i][j] = DOT_EMPTY;
+                }
+            }
+        }
+//Сбить линию противнака если остался 2 ход до победы
+        for (int i = 0; i < SIZE; i++) {
+            for (int j = 0; j < SIZE; j++) {
+                if (isCellValid (i, j)) {
+                    map[i][j] = DOT_X;
+                    if (checkWinLines (DOT_X, DOTS_TO_WIN - 1) && Math.random () < 0.5) {
+                        map[i][j] = DOT_O;
+                        return;
+                    }
+                    map[i][j] = DOT_EMPTY;
+                }
+            }
+        }
         do {
             y = random.nextInt (SIZE);
             x = random.nextInt (SIZE);
@@ -112,23 +161,29 @@ public class XOgame {
         }
         return true;
     }
-    //
-    //       Пробовал написать условия для проверки через цикл однако моихнавыков не хватило данный цикл не работает при вводе числа в строку где оно имееться выдает ошибку.
-    public static boolean checkWin(char c) {
-        for (int i = 0; i < map.length; i++) {
-            for (int j = 0; j < map.length; j++) {
-                if (map[i][j] == c && map[i][j + 1] == c && map[i][j + 2] == c) {
-                    return true;
-                }
-                if (map[i][j] == c && map[i + 1][j] == c && map[i + 2][j] == c) {
-                    return true;
-                }
-                if (map[i][j] == c && map[i + 1][j + 1] == c && map[i + 2][j + 2] == c) {
-                    return true;
-                }
-                if (map[i][j + 2] == c && map[i + 1][j + 1] == c && map[i + 2][j - 2] == c) {
-                    return true;
 
+
+    static boolean checkLine(int cy, int cx, int vy, int vx, char dot, int dotsToWin) {
+        if (cx + vx * (dotsToWin - 1) > SIZE - 1 || cy + vy * (dotsToWin - 1) > SIZE - 1 || cy + vy * (dotsToWin - 1) < 0) {
+            return false;
+        }
+        for (int i = 0; i < dotsToWin; i++) {
+            if (map[cy + i * vy][cx + i * vx] != dot) {
+                return false;
+            }
+
+        }
+        return true;
+    }
+
+    static boolean checkWinLines(char dot, int dotsToWin) {
+        for (int i = 0; i < SIZE; i++) {
+            for (int j = 0; j < SIZE; j++) {
+                if (checkLine (i, j, 0, 1, dot, dotsToWin) ||
+                        checkLine (i, j, 1, 0, dot, dotsToWin) ||
+                        checkLine (i, j, 1, 1, dot, dotsToWin) ||
+                        checkLine (i, j, -1, 1, dot, dotsToWin)) {
+                    return true;
                 }
 
             }
@@ -136,88 +191,6 @@ public class XOgame {
         }
         return false;
     }
+
 }
-
-//        if (map[0][0] == c && map[0][1] == c && map[0][2] == c) {
-//            return true;
-//        }
-//        if (map[1][0] == c && map[1][1] == c && map[1][2] == c) {
-//            return true;
-//        }
-//        if (map[2][0] == c && map[2][1] == c && map[2][2] == c) {
-//            return true;
-//        }
-//        if (map[0][0] == c && map[1][0] == c && map[2][0] == c) {
-//            return true;
-//        }
-//        if (map[0][1] == c && map[1][1] == c && map[2][1] == c) {
-//            return true;
-//        }
-//        if (map[0][2] == c && map[1][2] == c && map[2][2] == c) {
-//            return true;
-//        }
-//        if (map[0][0] == c && map[1][1] == c && map[2][2] == c) {
-//            return true;
-//        }
-//        if (map[0][2] == c && map[1][1] == c && map[2][0] == c) {
-//            return true;
-//        }
-//        return false;
-//    }
-
-//    private static boolean checkWin(char sym) {
-//        for (int i = 0; i < SIZE; i++) {
-//            int result = 0;
-//            for (int j = 0; j < SIZE; j++) {
-//                if (map[i][j] == sym) result++;
-//            }
-//            if (result == SIZE) return true;
-//        }
-//        for (int i = 0; i < SIZE; i++) {
-//            int result = 0;
-//            for (int j = 0; j < SIZE; j++) {
-//                if (map[i][j] == sym) result++;
-//            }
-//            if (result == SIZE) return true;
-//        }
-//        int first = 0;
-//        for (int i = 0; i < SIZE; i++) {
-//            for (int j = 0; j < SIZE; j++) {
-//                if (j == 1 && map[i][j] == sym) first++;
-//            }
-//        }
-//        if (first == SIZE) return true;
-//        int second = 0;
-//        for (int i = 0; j < SIZE - 1; i < SIZE && j >= 0, i++, j--){
-//            if (map[i][j] == sym) second++;
-//        }
-//        if (second == SIZE) return true;
-//        {
-//            return false;
-//        }
-//
-//    }
-
-
-//    private static boolean findRightDown(int y, int x) {
-//        for (int j = 0; j < DOTS_TO_WIN; j++) {
-//
-//            if (y < 0 || y >= SIZE || x < 0 || x >= SIZE || currentDot != map[y][x]) return false;
-//
-//            y++;
-//            x++;
-//        }
-//        return true;
-//    }
-//
-//    private static boolean findDown(int y, int x) {
-//        for (int j = 0; j < DOTS_TO_WIN; j++) {
-//
-//            if (y < 0 || y >= SIZE || x < 0 || x >= SIZE || currentDot != map[y][x]) return false;
-//
-//            y++;
-//        }
-//        return true;
-//    }
-
 
