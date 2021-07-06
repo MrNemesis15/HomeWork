@@ -12,10 +12,12 @@ public class Main {
 Cat cat = new Cat ("Barsik","red",5);
 cat.run (170);
 cat.swim (200);
+cat.countAnimals ();
 
 Dog dog = new Dog ("Barbos", "blac",6);
 dog.run (200);
 dog.swim (10);
+dog.countAnimals ();
 
     }
 }

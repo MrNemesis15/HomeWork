@@ -5,7 +5,7 @@ public class Dog extends Animal {
 
     public Dog(String name, String color, int age) {
         super (name, color, age);
-        System.out.println ("dog created");
+        count++;
     }
 
     @Override
@@ -18,6 +18,10 @@ public class Dog extends Animal {
     public void swim(int distance) {
         if (distance <= 10) System.out.println (name + " Проплыл " + distance + " м.");
         else System.out.println (name + " Столько не проплывет");
+    }
+
+    public void countAnimals() {
+        System.out.println ("Создано собак " + count);
     }
 }
 
