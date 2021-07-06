@@ -5,19 +5,6 @@ import java.util.Random;
 
 public class HomeWork3 {
 
-    ////    Задать целочисленный массив, состоящий из элементов 0 и 1. Например: [ 1, 1, 0, 0, 1, 0, 1, 1, 0, 0 ]. С помощью цикла и условия заменить 0 на 1, 1 на 0;
-    public static void invertArray() {
-        int[] arr = {1, 1, 0, 0, 1, 0, 1, 1, 0, 0};
-        for (int i = 0; i < arr.length; i++) {
-            if (arr[i] == 0) {
-                arr[i] = 1;
-            } else {
-                arr[i] = 0;
-            }
-            System.out.println (Arrays.toString (arr));
-        }
-    }
-
     //    //    Задать пустой целочисленный массив длиной 100. С помощью цикла заполнить его значениями 1 2 3 4 5 6 7 8 … 100;
     public static void fillArray() {
         int[] arr = new int[100];
@@ -136,8 +123,6 @@ public class HomeWork3 {
 // при этом метод должен сместить все элементы массива на n позиций. Элементы смещаются циклично.
 // Для усложнения задачи нельзя пользоваться вспомогательными массивами. Примеры: [ 1, 2, 3 ] при n = 1 (на один вправо) -> [ 3, 1, 2 ]; [ 3, 5, 6, 1]
 // при n = -2 (на два влево) -> [ 6, 1, 3, 5 ]. При каком n в какую сторону сдвиг можете выбирать сами.
-//    public static void moveArr (int[] array, int n) {
-//    }
     public static int[] shiftArr(int[] arr, int n) {
         int k = n % arr.length + arr.length;
         for (int i = 0; i < k; i++) {
