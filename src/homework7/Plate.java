@@ -19,6 +19,10 @@ public class Plate {
         return (food - amount) >= 0;
     }
 
+    void addFood() {
+        this.food += 100;
+        System.out.println("Вы добавили 100 единиц корма в миску");
+    }
     @Override
     public String toString() {
         return "Plate{" +
