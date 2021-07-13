@@ -11,18 +11,26 @@ public class Plate {
         return food;
     }
 
-    public void decrease(int amount) {
-        food -= amount;
+    public boolean decrease(int amount) {
+        if (amount < 0 || amount > food) {
+            return false;
+        }
+            food -= amount;
+        return true;
     }
 
-    boolean checkFood(int amount) {
-        return (food - amount) >= 0;
+//    boolean checkFood(int amount) {
+//        return (food - amount) >= 0;
+//    }
+
+    public boolean addFood(int amount) {
+        if (amount < 0) {
+            return false;
+        }
+        food += amount;
+        return true;
     }
 
-    void addFood() {
-        this.food += 100;
-        System.out.println("Вы добавили 100 единиц корма в миску");
-    }
     @Override
     public String toString() {
         return "Plate{" +
