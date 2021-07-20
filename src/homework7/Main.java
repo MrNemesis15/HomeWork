@@ -16,14 +16,25 @@ public class Main {
         cat[2] = new Cat ("Пушинка", 10);
 
         Plate plate = new Plate (100);
-        for (Cat i : cat) {
-            if (i.getHunger () == 0) {
-                if (plate.checkFood (i.hungerScore)) {
-                    i.eat (plate);
-                }
+//        for (Cat i : cat) {
+//            if (i.getHunger () == 0) {
+//                if (plate.checkFood (i.hungerScore)) {
+//                    i.eat (plate);
+//                }
+//            }
+//            System.out.println (plate);
+//            System.out.println (i.catsHunger (plate));
+//        }
+        for (int i = 0; i < cat.length; i++) {
+            if (!cat[i].eat (plate)){
+                plate.addFood (30);
+                cat[i].eat (plate);
             }
-            System.out.println (plate);
-            System.out.println (i.catsHunger (plate));
+
+        }
+        for (int i = 0; i < cat.length; i++) {
+            System.out.println (cat[i]);
+
         }
     }
 }
